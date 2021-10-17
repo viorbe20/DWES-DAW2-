@@ -239,8 +239,7 @@ function showIndex($array){
                     echo("<label class='ejNumber'><h2 class='card__title'>" . $arrayExercises["exerciseNumber"] . "</h2></label>");
                     echo("<h2 class='card__title'>" . $arrayExercises["exerciseDescription"] . "</h2>");
                     echo("<p class='card__apply'>");
-                    echo("<a class='card__link' href=\"". $arrayExercises["url"] ."\">Ir al ejercicio<i class='fas fa-arrow-right'></i></a></p>
-                    </div> ");   
+                    echo("<a class='card__link' href=\"". $arrayExercises["url"] ."\">Ir al ejercicio<i class='fas fa-arrow-right'></i></a></p></div> ");
                 }
             }    echo("<div>");
         }
