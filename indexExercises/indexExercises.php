@@ -163,28 +163,59 @@ $exercisesDWES = array(
         ),
       
     ),
-    $unit3_actcomp = array(
-        "unitDescription" => "Ud3_actcomp / Generar números.",
+    $unit3_act_comp = array(
+        "unitDescription" => "Ud3_act_comp / Generar números.",
         "exercises" => array (
             array(
                 "exerciseNumber" => "Ejercicio 1",
                 "exerciseDescription" => "20 números aleatorios",
-                "url" => "../../../ud3/ud3_actcomp/ej1/index.php"
+                "url" => "../../../ud3/ud3_act_comp/ej1/index.php"
             ),
             array (
                 "exerciseNumber" => "Ejercicio 2",
                 "exerciseDescription" => "Número aleatorio de 4 cifras con colores.",
-                "url" => "../../../ud3/ud3_actcomp/ej2/index.php"
+                "url" => "../../../ud3/ud3_act_comp/ej2/index.php"
             ),
             array (
                 "exerciseNumber" => "Ejercicio 3",
                 "exerciseDescription" => "Números aleatorios fecha nacimiento.",
-                "url" => "../../../ud3/ud3_actcomp/ej3/index.php"
+                "url" => "../../../ud3/ud3_act_comp/ej3/index.php"
             ),
             array (
                 "exerciseNumber" => "Ejercicio 4",
                 "exerciseDescription" => "Muestra un número por cifras.",
-                "url" => "../../../ud3/ud3_actcomp/ej4/index.php"
+                "url" => "../../../ud3/ud3_act_comp/ej4/index.php"
+            )
+        ),
+      
+    ),
+    $unit3_act_form = array(
+        "unitDescription" => "Ud3_act_form / Formularios",
+        "exercises" => array (
+            array(
+                "exerciseNumber" => "Ejercicio 1",
+                "exerciseDescription" => "Calendario III",
+                "url" => "../../../ud3/ud3_act_form/ej1/index.php"
+            ),
+            array (
+                "exerciseNumber" => "Ejercicio 2",
+                "exerciseDescription" => "Formulario CV.",
+                "url" => "../../../ud3/ud3_act_form/ej2/index.php"
+            ),
+            array (
+                "exerciseNumber" => "Ejercicio 3",
+                "exerciseDescription" => "Formulario países.",
+                "url" => "../../../ud3/ud3_act_form/ej3/index.php"
+            ),
+            array (
+                "exerciseNumber" => "Ejercicio 4",
+                "exerciseDescription" => "Formulario suma números.",
+                "url" => "../../../ud3/ud3_act_form/ej4/index.php"
+            ),
+            array (
+                "exerciseNumber" => "Ejercicio 5",
+                "exerciseDescription" => "Formulario verbos irregulares.",
+                "url" => "../../../ud3/ud3_act_form/ej5/index.php"
             )
         ),
       
