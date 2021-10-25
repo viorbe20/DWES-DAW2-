@@ -12,10 +12,10 @@
  */
 
 //Variables para inputs de texto
-$name = $email = $workExperience = $education = "";
+$name = $surname1 = $surname2 = $email = $website = $workExperience = $education = "";
 
 //Variables para mensaje de error en inputs de texto
-$nameErr = $emailErr = $workExperienceErr = $educationErr = "";
+$nameErr = $surnameErr = $emailErr = $websiteErr = "";
 
 //Botón verificación. Checkbox
 $a_languages = array('Español', 'Inglés', 'Francés', 'Italiano', 'Otros');
@@ -93,6 +93,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $name = clearData($_POST['name']);
     }
 
+    //Validación apellidos
+    if (empty($_POST['surname1'])) {
+        $surnameErr = "El apellido es obligatorio";
+        $f_error = true;
+    } else {
+        $surname1 = clearData($_POST['surname1']);
+    }
+
+    //Validación apellido 2 (no obligatorio)
+    if ($_POST['surname2']) {
+        $surname2 = clearData($_POST['surname2']);
+    }
+
+    //Validación email
+    if (empty($_POST['email'])) {
+        $emailErr = "El email es obligatorio.";
+        $f_error = true;
+    } else {
+        $email = clearData($_POST['email']);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Formato de email incorrecto";
+            $f_error = true;
+        };
+    }
+
+    //Validación url
+    $website = clearData($_POST['website']);
+    if (!filter_var($website, FILTER_VALIDATE_URL)) {
+        $websiteErr = "Formato incorrecto";
+        $f_error = true;
+    };
+
+    //Validación experiencia laboral y educación
+    $education = clearData($_POST['education']);
+    $workExperience = clearData($_POST['workexperience']);
+
     //Validación idiomas
     if (isset($_POST['languages'])) {
         $a_selectedLanguages = $_POST['languages'];
@@ -120,13 +156,10 @@ if ($f_error) {
 <!--HTML inicial y con datos procesados-->
 <!DOCTYPE HTML>
 <html lang="es">
+<link rel='stylesheet' href='css/cv.css'>
 
 <head>
-    <style>
-        .error {
-            color: "red";
-        }
-    </style>
+
 </head>
 
 
@@ -134,14 +167,47 @@ if ($f_error) {
 
 <?php
 if (!$f_processForm) { ?>
-    <h1>Formulario CV</h1>
-    <p><span class="error">* Campos requeridos...</span></p>
+    
+    
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        
+    <h1>Completa tu CV</h1>
+    <div id="container">
+    <div id='box1'>
+    <p><span class="error">* Campos requeridos...</span></p> 
+    
     Nombre <input type="text" name="name" value="<?php echo $name; ?>">
     <span class="error">*<?php echo $nameErr; ?></span><br /><br />
 
-    Idiomas <br/>
+    Primer apellido <input type="text" name="surname1" value="<?php echo $surname1; ?>">
+    <span class="error">*<?php echo $surnameErr; ?></span><br /><br />
+
+    Segundo apellido <input type="text" name="surname2" value="<?php echo $surname2; ?>">
+    <br/><br/>
+
+    Email: <input type="text" name="email" value="<?php echo $email; ?>">
+        <span class="error">* <?php echo $emailErr; ?></span><br /><br />
+    
+    Website: <input type="text" name="website" value="<?php echo $website; ?>">
+    <span class="error"><?php echo $websiteErr; ?></span><br /><br />
+
+    
+    <input type="hidden" name="MAX_FILE_SIZE" value="100" />Seleccionar imagen
+    <br><br>
+    <input name="file" type="file" />
+    </div>  
+
+    <div id="box2">
+    Experiencia Profesional:<br />
+        <textarea name="comment" rows="5" cols="40"><?php echo $workExperience; ?></textarea><br /><br />
+
+    Educación:<br />
+    <textarea name="comment" rows="5" cols="40"><?php echo $education; ?></textarea><br /><br />
+
+    
+    </div>
+    </div>
+    <hr>
+    Idiomas <br/><br/>
         <?php
         foreach ($a_languages as $value) {
             $selected = (in_array($value, $a_selectedLanguages)) ? 'checked' : '';
@@ -149,6 +215,7 @@ if (!$f_processForm) { ?>
         }
         ?>
         <br/><br/>
+        <hr>
 
     Estado laboral (múltiple):<br/><br/>
     <select multiple name="employmentSituation[]">
@@ -159,6 +226,7 @@ if (!$f_processForm) { ?>
         }
         ?>
     </select><br/><br/>
+    <hr>
 
     Selecciona tu provincia:
         <select name="city">
@@ -169,15 +237,24 @@ if (!$f_processForm) { ?>
             }
             ?>
         </select><br/><br/>
-  
-        </select><br /><br />
-        <input type="submit" name="submit" value="Submit"><br /><br />
+  <hr>
+  <input type="reset" name="reset" value="Borrar">      
+  <input type="submit" name="submit" value="Enviar"><br/><br/>
+        
     </form>
 <?php
 } // Procesa Formulario
 else {
     echo "<h1>Your Input:</h1>";
     echo $name;
+    echo "<br/>";
+    echo $surname1;
+    echo "<br/>";
+    echo $surname2;
+    echo "<br/>";
+    echo $email;
+    echo "<br/>";
+    echo $website;
     echo "<br/>";
    
     //Salida de botón verificación - checkbox   
@@ -191,12 +268,11 @@ else {
     }
 
     //Salida de la provincia
-
-        foreach ($a_city[$a_selectedCity-1] as $key => $value) {
-            if ($key == "literal") {
-                echo($value . "<br>");
-            }
+    foreach ($a_city[$a_selectedCity-1] as $key => $value) {
+        if ($key == "literal") {
+            echo($value . "<br>");
         }
+    }
     echo "<br/>";
 
 }
