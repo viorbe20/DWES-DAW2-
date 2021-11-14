@@ -1,16 +1,20 @@
 <?php
+/*
+http://192.168.10.10/clase/validaciones/validacion1/index.php
+*/
 session_start();
 if (!isset($_SESSION['auth'])) {
     $_SESSION['auth']=false;
 }
 
 if(isset($_POST['enviar'])){
-    if ($_POST['usuario']=='usuario' and $_POST['psw']=='1234') {
+    if (($_POST['usuario']=='usuario') and ($_POST['psw']=='1234')) {
         $_SESSION['auth']=true;
     }
 }
 ?>
 
+<!--validar usuarios-->
 <!--VISTA-->
 <html lang="es">
 
@@ -26,7 +30,7 @@ if(isset($_POST['enviar'])){
         <a href="index.php">Inicio</a>
         <a href="publico.php">Público</a>
         <?php
-        if ($auth) {
+        if ($_SESSION['auth']) {
             echo "<a href=\"privado.php\">Privado</a>";
             echo "<a href=\"salir.php\">Salir</a>";
         }
@@ -34,10 +38,10 @@ if(isset($_POST['enviar'])){
     </nav>
     <div>
         <?php
-        if ($auth) {
-            echo "Logueado";
+        if ($_SESSION['auth']) {
+            echo "Información de cuenta.";
         } else {
-            echo "formulario";
+            include "/view/form.view.html";
         }
         ?>
     </div>
