@@ -1,0 +1,19 @@
+
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+error {
+    color: "#FF0000";
+}
+
+table, th, td, tr {
+    border: 1px solid black;
+    column-span: 7;
+}
+
+tr {
+    text-align: center;
+}
