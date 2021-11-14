@@ -11,9 +11,13 @@ if (!isset($_SESSION['tasksList'])) {
 //de la tarea y el estado introducido
 //Es un array asociativo con nombre y valor
 if (isset($_POST['alta'])) {
-    $_SESSION['tasksList'][]=array('task'=>$_POST['task'],
-                                'status'=>$_POST['status']);
+    $_SESSION['tasksList'][$_GET['fecha']][]=array(
+                                'task'=>$_POST['task'],
+                                'startTime'=>$_POST['startTime'],
+                                'endTime'=>$_POST['endTime'],
+                                'comments'=>$_POST['comments']);
 }
+//var_dump ($_SESSION['tasksList']);
 ?>
 
 <!--VISTA-->
@@ -23,7 +27,9 @@ if (isset($_POST['alta'])) {
 </head>
 
 <body>
-<h1>Lista de tareas</h1>
+<h1>Lista de tareas <?php
+echo $_GET['fecha'];
+?></h1>
 
 <!--Creamos ambos enlaces para enviar correo y cerrar sesión-->
 <a href="../index.php">Volver al calendario</a>
@@ -32,9 +38,15 @@ if (isset($_POST['alta'])) {
 <form action="" method="post">
     <p>Tarea:</p>
     <input type="text" name="task" placeholder="Tarea"/> 
+
+    <p>Hora de inicio:</p>
+    <input type="time" name="startTime"/> 
     
-    <p>Estado:</p>
-    <input type="text" name="status" placeholder="Estado"/> 
+    <p>Hora de finalización:</p>
+    <input type="time" name="endTime"/> 
+
+    <p>Comentario:</p>
+    <input type="text" name="comments" placeholder="Comentario"/> 
     
     <!--Botón submit-->
     <p><input type="submit" name="alta" value="Agregar"></p>
@@ -44,8 +56,8 @@ if (isset($_POST['alta'])) {
 <h2>Listado de tareas</h2>
 <?php
 //Recorremos el array SESSION[tasksList] donde se han ido guardando las tareas
-foreach ($_SESSION['tasksList'] as $key => $value) {
-    echo $value['task'].' '.$value['status'].'<br>';
+foreach ($_SESSION['tasksList'][$_GET['fecha']] as $key => $value) {
+    echo $value['task'].' '.$value['startTime'].' '.$value['endTime'].' '.$value['comments'].'<br>';
 }
 ?>
 

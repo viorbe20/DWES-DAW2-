@@ -14,6 +14,9 @@
  *http://192.168.10.10/calendar/calendar_v3/index.php
  */
 
+//Iniciamos sesión
+session_start();
+
 //Archivo que contiene array de días festivos
 include __DIR__ . "/php/getHolidays.php";
 

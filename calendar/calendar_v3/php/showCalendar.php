@@ -1,4 +1,8 @@
 <?php
+
+function drawDayColor($color, $numberOnCalendar){
+    echo ("<td bgcolor=\"$color\" align=\"center\" height=\"50\" width=\"50\"><a href=\"php/date.php?fecha=".$numberOnCalendar.'/'.$GLOBALS['month'].'/'.$GLOBALS['year']."\">$numberOnCalendar</a></td>");
+};
 /**
      * Función que muestra el calendario con los colores correspondientes
      */
@@ -19,6 +23,9 @@
         //Muestra calendario
         $numberOnCalendar = 1;
         $boxesNumber = 35;
+
+        
+
         for ($i = 1; $i <= $boxesNumber; $i++) {
             //Si el mes ocupa 6 semanas ampliamos una fila
             if ($daysPerMonth >= 30 && $firstDayOfMonth == 6 || $firstDayOfMonth == 7) {
@@ -32,12 +39,11 @@
                 //Colorea verde día actual y rojo domingos
 
                 if ($numberOnCalendar == $currentDay) {
-                    echo ("<td bgcolor=\"green\" align=\"center\" height=\"50\" width=\"50\"><a href='php/date.php'>$numberOnCalendar</a></td>");
+                    drawDayColor("green", $numberOnCalendar);
                 } else if (($easterMonth == $currentMonthNumber) && (($numberOnCalendar == $holyThursday) || ($numberOnCalendar == $holyFriday))) {
-                    echo ("<td bgcolor=\"pink\" align=\"center\" height=\"50\" width=\"50\"><a href='php/date.php'>$numberOnCalendar</a></td>");
+                    drawDayColor("pink", $numberOnCalendar);
                 } else if ($i % 7 == 0) {
-                    echo ("<td bgcolor=\"red\" align=\"center\" height=\"50\" width=\"50\">
-                    <a href=\"php/date.php?fecha=".$numberOnCalendar.' de '.$GLOBALS['month'].' de '.$GLOBALS['year']."\">$numberOnCalendar</a></td>");
+                    drawDayColor("red", $numberOnCalendar);
                 } else {
                     foreach ($holiday[$currentMonthNumber - 1] as $key => $value) {
                         if ($key == "estatal") {
@@ -49,13 +55,13 @@
                         }
                         for ($l = 0; $l < count($value); $l++) {
                             if ($numberOnCalendar == $value[$l]["numero"]) {
-                                echo ("<td bgcolor=\"$color\" align=\"center\" height=\"50\" width=\"50\"><a href='php/date.php'>$numberOnCalendar</a></td>");
+                                drawDayColor($color, $numberOnCalendar);
                                 $regularDay = false;
                             }
                         }
                     }
                     if ($regularDay) {
-                        echo ("<td align=\"center\" height=\"50\" width=\"50\"><a href='php/date.php'>$numberOnCalendar</a></td>");
+                       drawDayColor("white", $numberOnCalendar);
                     }
                 }
                 $numberOnCalendar++;
@@ -67,4 +73,6 @@
         }
         echo ("</tr>");
         echo ("</table>");
+        
+        
     };
