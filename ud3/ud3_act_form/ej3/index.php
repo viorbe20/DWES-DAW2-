@@ -53,7 +53,6 @@ Selecciona un país:
             <?php
             foreach (getCountries() as $value) {
                 $selected = ($opcionSeleccionada == $value['value']) ? 'selected' : '';
-                //echo "<option value = \"" . $valor['valor'] . "\" $selected >" . $valor['literal'] . "</option>";
                 echo "<option value = \"" . $value['value'] . "\" $selected >" . $value['country'] . "</option>";
             }
             ?>

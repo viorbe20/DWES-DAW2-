@@ -279,7 +279,6 @@ if ($i<$firstDayOfMonth) {
 if($i%7==0){
 echo("</tr><tr>");
 }
-
 }
 echo("</tr>");
 echo("</table>");

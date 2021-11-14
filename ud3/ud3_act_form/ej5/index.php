@@ -75,9 +75,22 @@ function fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount){
 //echo(var_dump(fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount)));
 
 
-function(){
-
-};
+// function showVerbsTable($a_randomNumbers){
+// //Cargamos la lista original de verbos
+// $a_verbsList = getIrregularVerbs();
+// //Lo recorremos para que nos devuelva la key
+// foreach ($a_verbsList as $key => $value) {
+//    //Si la key está en nuestro array de números random, lo guarda en el array de índices y lo imprime
+//    if (in_array($key, $a_randomNumbers)) {
+//       //echo($key);
+//       //echo(var_dump($value));
+//       for ($i=0; $i < count($value); $i++) { 
+//          echo($value[$i]);
+//       }
+//    }
+   
+// }
+// };
 
 //VALIDACIÓN DE DATOS
 //Arrays vacíos donde luego se guardarán las opciones elegidas por el usuario
@@ -104,9 +117,6 @@ if (isset($_POST['level'])) {
 if ($f_error) {
    $f_processForm = false;
 }
-
-// $a_selectedGaspsAmount = $a_selectedGaspsAmount[0];
-// $a_selectedVerbsAmount = $a_selectedVerbsAmount[0];
 
 //////////////////////HTML
 ?>
@@ -152,11 +162,10 @@ if (!$f_processForm) { ?>
 <?php
 } // Muestra verbos
 else {
-   // echo("se procesa");
-   // var_dump($a_selectedVerbsAmount);
-   // var_dump("Dificultad: " .  $a_selectedGaspsAmount);
 
+   //Imprime array de índices
    echo(var_dump(fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount)));
+
 }
 ?>
 </body>

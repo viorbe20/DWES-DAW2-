@@ -147,9 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 };
 if ($f_error) {
     $f_processForm = false;
-}
-
-;
+};
 
 ?>
 
