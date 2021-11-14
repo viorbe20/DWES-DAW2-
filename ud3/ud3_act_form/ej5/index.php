@@ -5,7 +5,7 @@
  * teniendo el cuenta la dificultad y el número de verbos que aparecerán.
  * @author: Virginia Ordoño Bernier
  * @date: October 2021st
- * http://192.168.10.10/ud3/ud3_act_form/ej5/
+ * http://192.168.10.10/ud3/ud3_act_form/ej5/index.php
  */
 
 // //Archivo que contiene array con los verbos irregulares
@@ -72,25 +72,6 @@ function fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount){
    return $a_indexes;
 };
 
-//echo(var_dump(fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount)));
-
-
-// function showVerbsTable($a_randomNumbers){
-// //Cargamos la lista original de verbos
-// $a_verbsList = getIrregularVerbs();
-// //Lo recorremos para que nos devuelva la key
-// foreach ($a_verbsList as $key => $value) {
-//    //Si la key está en nuestro array de números random, lo guarda en el array de índices y lo imprime
-//    if (in_array($key, $a_randomNumbers)) {
-//       //echo($key);
-//       //echo(var_dump($value));
-//       for ($i=0; $i < count($value); $i++) { 
-//          echo($value[$i]);
-//       }
-//    }
-   
-// }
-// };
 
 //VALIDACIÓN DE DATOS
 //Arrays vacíos donde luego se guardarán las opciones elegidas por el usuario
@@ -164,7 +145,32 @@ if (!$f_processForm) { ?>
 else {
 
    //Imprime array de índices
-   echo(var_dump(fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount)));
+   $currentVerbsList = fillIndexArray($a_selectedVerbsAmount, $a_selectedGaspsAmount);
+   var_dump ($currentVerbsList);
+   ?>
+   <h1>Test Verbos Irregulares en Inglés</h1> 
+<?php
+
+  foreach ($currentVerbsList as $key => $value) {
+     echo $key.'-Array de índices</br>';
+     $newIndex = $key;
+     //Si el índice coincide, que imprima esos verbos
+     foreach (getIrregularVerbs() as $key => $value) {
+      if ($key == $newIndex) {
+         echo $key.'-Array de verbos</br>';
+         
+         foreach (createVerbsGasps($a_selectedGaspsAmount) as $key => $value) {
+            # code...
+         }
+
+         echo $value[0].'</br>';
+         echo $value[1].'</br>';
+         echo $value[2].'</br>';
+         echo $value[3].'</br>';
+      }
+      
+     }
+  }
 
 }
 ?>
