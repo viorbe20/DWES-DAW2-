@@ -1,6 +1,7 @@
 <?php
-//AL prinicio da un fallo porque al crearla la cookie no exite. 
+//AL prinicio da un fallo porque al crearla la cookie no existe. 
 //Necesitamos recargarla para que se cree
+//http://192.168.10.10/clase/cookies/cookieCreation/index.php
 
 //Detectamos si la cookie está creada con isset
 if(isset($_COOKIE['contador'])){

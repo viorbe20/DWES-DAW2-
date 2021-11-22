@@ -1,9 +1,33 @@
 <?php
-//http://192.168.10.10/clase/cookies/cookiesForm/index.php
+/**
+ * @author Virginia Ordoño Bernier
+ * @since November 2021st
+ * //http://192.168.10.10/clase/cookies/cookiesForm/index.php
+ * 
+ * Planteamiento
+ * -------------
+ * Formulario donde el usuario debe introducir nombre correcto ("admin")y contraseña  ('admin123').
+ * Tiene opción de guardar la contraseña mediante casilla de verificación
+ * Con el botón 'enviar' valida sus datos
+ * 
+ * Variables y funciones
+ * ---------------------
+ * => Variables para los datos del usuario
+ * => Variables de posible error para esos campos
+ * => Flags para validación de datos
+ * => función lipieza de datos
+ * 
+ * Pasos
+ * -----
+ * 1. Comprobamos si $_COOKIE[] contiene los datos.
+ * 2. Metemos cada dato del usuario en  una variable.
+ */
 
-//Creamos variable para los dos campos que va atener el formulario
+
+//Creamos variable para los dos campos que va a tener el formulario
 $user = "";
 $password="";
+
 
 //Variables de error para esos campos
 $err_user="";
@@ -23,6 +47,7 @@ function clearData($data) {
 
 //Si la cookie contiene el usuario y la contraseña, dividimos su contenido 
 //y lo metemos en sus variables correspondientes
+
 if (isset($_COOKIE['user&password'])) {
     $a_twoParts = explode("/", $_COOKIE['user&password']);
     $user = $a_twoParts[0];
@@ -31,7 +56,7 @@ if (isset($_COOKIE['user&password'])) {
 
 //Si se ha pulsado el botón enviar, comprobamos que todo esté correcto.
 if (isset($_POST['send'])) {
-    
+   
     //Si está vacío el usuario, devuelve mensaje de error y activamos bandera
     if (empty($_POST['user'])) {
         $err_user = "El usuario es obligatorio.";
@@ -94,6 +119,7 @@ if (isset($_POST['send'])) {
 //se muestra el formulario
 if ($f_processForm) {
 ?>
+
 <form action="" method="post">
 
     <label>
